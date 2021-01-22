@@ -110,3 +110,51 @@
   - 모양 : circle(원형), ellipse(타원형)
   - 위치 : background:radial-gradient(circle at 10% 10%)
 - 그라데이션을 사용해 패턴 만들기 : repeating-radial-gradient (yellow, red 20px)
+
+2021-01-22
+
+1. CSS와 박스모델
+
+- 블록 레벨 요소와 인라인 레벨 요소
+
+  - 블록 레벨 요소 : 세로 <p> <div> <ul> <table>
+  - 인라인 레벨 요소 : 가로 <img> <span> <label>
+
+- 박스 모델 : 텍스트 단락 앞뒤에 빈줄이 생기면서 텍스트 단락이 박스형태를 가짐
+
+- 콘텐츠 영역의 크기 : width, height 속성 
+
+  - ex) width:400px; height:100px 또는 auto; padding 10px; border 5px
+
+  - 콘텐츠 크기 계산 :  100+20(10x2)+10(5x2)=230px(박스너비)
+
+- 화면 배치 방법 : display : none; block;(가로) inline;(세로) table;(블록 표) inline-table(인라인 표)
+
+2. 테두리 관련 속성
+
+- 테두리 스타일 : border-style:none; hidden;(숨김) dashed;(짧은선) dotted;(점선) 
+
+  double;(이중선) solid;(실선)
+
+- 테두리 두께 : border-width: 2px;
+
+- 테두리 색상 : border-color : blue;
+
+- 테두리 스타일 묶어 지정 : border: 두께; 색상; 스타일;
+
+  - border: 3px soild black
+
+- 박스 모서리 둥글게 : border-radius : 20px; 백분율;
+
+  - 타원 형태로 둥글게 : border-radius : 100px(가로) 20px(세로)
+
+- 그림자 효과 : box-shadow: none; <수평> <수직> <흐림정도> <번짐정보> <색상> inset(안쪽 그림자)
+
+  - box-shadow : 5px 5px 15px 5px gray
+
+3. 여백을 조절하는 속성들
+
+- 요소 주변 여백 설정 : margin : 크기; 백분율; auto;
+  - margin : 30px(위) 20px(좌우) 50px(아래)
+- 마진중첩 현상 : 블록으로 했을때 마진 중첩됨 30+30=30이 됨 but 인라인으로 했을떄는 30+30=60이됨
+- 콘텐츠 영역과 테두리 사이 여백 설정 : padding :크기; 백분율; auto; 10px;
