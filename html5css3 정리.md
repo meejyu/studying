@@ -212,4 +212,73 @@
 
 - FTP 프로그램 : 서버로 옮겨주는 역할, 파일 전송 프로토콜(File Transfer Protocol), FileZilla
 
-  
+
+
+
+2021.01.25
+
+CSS 레이아웃
+
+1. CSS포지셔닝과 주요 속성들
+
+- CSS 포지셔닝 : 레이아웃 설정
+
+- 박스 너비 기준 정하기 : box-sizing : content-box;(콘텐츠 영역) border-box;(콘텐츠 영역 테두리 포함)
+
+- 박스 모델 : 300=너비+(paddingx2)+(2x2)
+
+- 왼쪽이나 오른쪽으로 배치 : float : left; right; none;
+
+- float 속성 해제 : clear: left; right; none;
+
+- 임의로 본문 내용 넣기 : 로렘 입숨
+
+- 2단 레이아웃 
+
+  - 사이트 제목 : 헤더 (header)
+
+  - 메뉴나 기타 부가 내용 : 사이드바(sidebar) 
+
+  - 본문내용 : 본문 (contents)
+
+  - 저작권 정보나 연락처 : 푸터 ( footer)
+
+  - 테두리 넣기 > 컨테이너(container) 스타일 지정 > 헤더 패딩과 마진 지정 >
+
+    본문과 사이드바 배치 > 푸터 배치 > 브라우저 확인
+
+- 배치 방법 지정 : 
+
+  - position : static (흐름대로 배치),  top이나 right 등등 속성과 같이 사용
+  - position : relative(문서흐름따라 위치지정),  top이나 right 등등 속성과 같이 사용
+  - absolute : 원하는 위치에 배치, width 100px height 300px
+  - fixed : 스크롤해도 고정
+
+- 요소 보이거나 숨기거나 : visibility: visible(표시), hidden(숨기기)
+
+- 요소 쌓는 순서 정하기 : z-index : 1 z-index : 3 z-index-1
+
+2. 다단으로 편집하기
+
+- 단의 너비 고정, 다단 구성하기 : column-width : 120px, auto
+- 단의 개수 고정 : column-count : 3, auto
+- 단 사이 여백 지정 : column-gap : 3em, normal
+- 구분선 색상, 스타일, 너비 :  column-rule : 2px dotted #000;
+- 다단 위치 지정 : break-before(앞), after(뒤), inside(안)
+- 여러 단 하나로 합치기 : column-span : 1(안합침), all(모두 합치기)
+
+3. 표 스타일
+
+- 표 제목 위치 선정 : caption-side : top; bottom;
+- 표 테두리 스타일 결정 : border : 1px dotted black;
+- 테두리 통합, 분리 : border-collapse : collapse(통합) separate(분리)
+- 인전합 셀 테두리 사이 거리 지정 : border-spacing : 20px(수평) 10px(수직)
+- 빈셀의 표시 여부 지정 :  empty-cells : show(기본값) hide(숨기기)
+- 표 너비와 높이 지정 : width:200px, height:200px
+- 셀 너비 지정 : table-layout: fixed; auto
+  - table{
+  - width: 300px
+  - table-layout:fixed;}
+- 셀 안에 수평 정렬: text-align:left right center
+- 셀안에서 수직 정렬 : vertical-align : baseline(기준선에 맞추기)
+
