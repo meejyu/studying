@@ -362,3 +362,71 @@
 
 2. 오디오 & 비디오 재생하기
 
+- 오디오 파일 삽입하기 : <audio src="오디오 파일 경로" 속성></audio>
+
+  audio src="주소" contorls autoplay loop mute></ a u d i o >
+
+  - autoplay : 오디오 자동 재생
+  - preload : 다운로드
+  
+- 비디오 파일 삽입하기 : <video src="비디오 파일 경로" 속성></video>
+
+- 여러 미디어 파일 삽입 : <source sre="경로" type="유형viddecs="비디오 코덱">
+
+- 비디오 태그가 안되는 이전 브라우저 : 메시지 남기기
+
+- audio 태그와 video 태그의 속성 
+
+  - 크기 조절 : width, height 
+  - 컨트롤 막대 표시 : controls 
+  - 반복재생 : loop 
+  - 소리끄고 재생 : mute 
+  - 문제 상황 표시 : poster
+  - 파일 다운로드 여부 : preload : none(재생버튼 누르면 다운로드) auto(자동 다운로드)
+
+- 비디오 자막 추가 : track kind="자막종류" src="경로" srclang="언어" label="제목" default
+
+  track kind="subtitles" src="wildlife.vtt" srclang="ko" label="korean" default
+
+  - kind 속성 : subtitles 자막
+  - WebVTT 자막파일 : vtt 
+
+
+
+2021-01-28
+
+[12. 다재다능한 CSS3 선택자]
+
+1. 연결 선택자
+
+- 하위 선택자 : 지정한 모든 하위 요소에 스타일 적용 : 상위요소 하위요소
+
+  section(상위요소) p(하위요소) { color: blue;}
+
+- 자식 선택자 : 자식 요소에만 스타일 적용 : 부모요소 > 자식요소
+
+  section(부모요소) > p(자식요소) { color: blue;}
+
+- 인접 형제 선택자 : 가까운 형제 요소에 스타일 적용 : 요소1 + 요소 2
+
+  h1 + p(h1태그이 첫번째 형제 요소) {text-decoration: underline;}
+
+- 형제 선택자 : 형제 요소에 스타일 적용 : 요소1 ~ 요소2
+
+  h1 ~ p(형제요소) {text-decoration: underline;}
+
+2. 속성 선택자
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
