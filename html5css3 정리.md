@@ -308,7 +308,7 @@
 
 2. 문서 구조를 위한 HTML5 시맨틱 태그
 
-- 머리말 지정 : <header></header>
+- 머리말 지정 : < header></header>
 - 문서를 연결하는 내비게이션 링크 : <nav></nav>
 - 주제별 콘텐츠 영억 나타내기 : <section></section>
 - 콘텐츠 내용 넣기 : <article></article>
@@ -416,6 +416,104 @@
   h1 ~ p(형제요소) {text-decoration: underline;}
 
 2. 속성 선택자
+
+| 기본형       | 스타일 적용 경우                               | 예시 -  선택자    | 예시 - 적용되는 요소                                         |
+| ------------ | ---------------------------------------------- | ----------------- | ------------------------------------------------------------ |
+| [속성]       | 지정한 '속성'일 때                             | [href]            | < a href="#"> 메뉴1 < / a>                                   |
+| [속성=값]    | '값'에 일치할 때                               | [target="_blank"] | < a href="#" target="_blank"> HTML < / a>                    |
+| [속성~=값]   | 여러값 중 특정 '값'이 포함되어 있을때 (단어별) | [class~="button"] | < a href="#" class="flat vutton"> 메뉴4 </ a>                |
+| [속성 \|=값] | '값'이 포함되어있을때(하이픈 포함)             | [class\|="us"]    | < a href="#" title="us">영어 < /a ><br /><a href=""#" title="us-english"> 영어 </ a> |
+| [속성^=값]   | '값'으로 시작할 때                             | [title^="eng"]    | < a href="#" title="english">영어 < /a>                      |
+| [속성 $=값]  | '값'으로 끝날 때                               | [href $="xls"]    | < a href="intro.xls"> 엑셀파일< /a>                          |
+| [속성*=값]   | '값'이 속성 값의 일부 일 때                    | [href *="w3"]     | < a href="http: //www. w3c.org/tr/html"> HTML사이트< /a>     |
+
+3. 가상 클래스와 가상 요소
+
+- 사용자 동작에 반응하는 가상 클래스
+
+  .navi a:link, .navi a:visited {스타일} .navi a:hover, .navi a:focus {스타일}
+
+  - 방문하지 않은 링크에 스타일 적용 : :link 선택자
+  - 방문한 링크에 스타일 적용 : :visited 선택자
+  - 마우스 커서 올렸을 때 스타일 적용 : :hover 선택자
+  - 웹 요소를 활성화 했을 때의 스타일 적용 : :active 선택자
+  - 웹 요소에 초점이 맞춰졌을 때 스타일 적용 : :focus 선택자
+  - 순서 : :link :visited :hover :active (반드시 순서 지킴)
+
+- UI요소 상태에 따른 가상 클래스 : UI요소의 상태에 따라 앱 화면 디자인 할 때 사용
+
+  input:disabled {스타일}
+
+  input:checke + span {스타일}
+
+  < /label>이름 < input type="text" disabled>< /label>
+
+  < /lavel>< input type="radio" value="writng">< span>작문< /span>< /label>
+
+  - 요소를 사용 할 수 있을 때 와 없을 때 : :enabled :disabled 
+  - 체크박스 선택햇을 때 : :cheked
+
+- 구조 가상 클래스
+
+  - 문서 전체에 적용, HTML요소에 스타일 적용 : :root 
+  - 자식 요소의 위치에 따라 스타일 적용 : table tr:nth-child(2n+1) {스타일 적용}
+    - :nth-child(n) : 앞에서부터 n번째 자식 요소에 스타일 적용 
+    - :nth-last-child(n) : 끝에서부터 n번째 자식 요소에 스타일 적용
+    - 홀수번째 적용 : 2n+1
+    - 짝수번째 적용 : 2n
+
+  - 특정 태그 위치에 스타일 적용 : 
+
+    - :nth-of-type(n) : 앞에서 몇번째 태그 인지
+    - :nth-last-of-type(n) : 끝에서 몇번째 태그 인지
+
+  - 첫번째, 마지막 요소에 스타일 적용
+
+    ul.navi li:first-child {스타일}
+
+    ul.navi li:last-child {스타일}
+
+    < li class="home">< a href="#">home< /a>< /li>
+
+    < li id="jquery">< a href="#">Jquery< /a>< /li>
+
+    - :first-child
+    - :last-child
+
+  - 형제관계요소의 위치에 따라 스타일 적용
+
+    p:first-of-type {스타일}
+
+    - :first-of-type
+    - :last-of-type
+
+  - 하나뿐인 자식 요소에 스타일 적용
+
+    - :only-child
+    - :only-of-type
+
+- 가상 요소 : 클래스 이름 앞에 콜론 두개(::) 붙임
+
+  - 첫번째 줄, 첫번째 글자에 스타일 적용 : ::first-line ::first-letter
+
+  - 내용 앞뒤에 콘텐츠 추가 : ::before ::after
+
+
+
+2021-01-29
+
+[13.CSS3와 애니메이션]
+
+1. 변형
+
+- 2차원 변형과 3차원 변형
+
+  - 2차원 : x축 y축 변형
+  - 3차원 : x축 y축 z축 변형
+
+- transform과 변형함수 : 이미지 회전, 이동
+
+  
 
 
 
