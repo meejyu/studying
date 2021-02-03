@@ -507,24 +507,90 @@
 1. 변형
 
 - 2차원 변형과 3차원 변형
-
-  - 2차원 : x축 y축 변형
+- 2차원 : x축 y축 변형
   - 3차원 : x축 y축 z축 변형
-
 - transform과 변형함수 : 이미지 회전, 이동
+  - 2차원
 
-  
+| 변형함수          | 설명                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| translate(tx, ty) | 지정한 크기만큼 x축과 y축으로 이동합니다                     |
+| translate(tx)     | 지정한 크기만큼 x축으로 이동합니다                           |
+| translate(ty)     | 지정한 크기만큼 y축으로 이동합니다                           |
+| 예시              | transform : translate(10px, 20px); 오른쪽으로 10px, 아래쪽으로 20px이동 |
+| scale(sx, sy)     | 지정한 크기만큼 x축과 y축으로 확대/축소합니다                |
+| scaleX(sx)        | 지정한 크기만큼 x축으로 확대/축소합니다                      |
+| scaleY(sy)        | 지정한 크기만큼 y축으로 확대/축소합니다                      |
+| 예시              | transform : scale(1.7) 가로,세로로 1.7배 확대                |
+| rotate(각도deg)   | 지정한 각도만큼 회전합니다                                   |
+| 예시              | transform : rotate (-40deg); 시계반대방향으로 40도 회전      |
+| skew(ax, ay)      | 지정한 각도만큼 x축과 y축으로 왜곡합니다                     |
+| skewX(ax)         | 지정한 각도만큼 x축으로 왜곡합니다.                          |
+| skewY(ay)         | 지정한 각도만큼 y축으로 왜곡합니다.                          |
+| 예시              | transform : skew(-25deg, -15deg) x축으로 -25도 y축으로 -15도 |
+
+- 3차원
+
+| 변형함수                 | 설명                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| matric3d(n, [n])         | 4x4 행렬을 이용해 이동과 확대/축소, 회전 등의 변환을 지정합니다. |
+| translate(tx, ty, tz)    | 지정한 크기만큼 x축과 y축, z축으로 이동합니다                |
+| translateZ(tz)           | 지정한 크기만큼 z축으로 이동합니다                           |
+| scale(sx, sy, sz)        | 지정한 크기만큼 x축과 y축, z축으로 확대/축소합니다           |
+| scaleZ(sz)               | 지정한 크기만큼 z축으로 확대/축소합니다                      |
+| 예시                     | transform : scale(1.7) 가로,세로로 1.7배 확대                |
+| rotate(rx, ry, rz, 각도) | 지정한 각도만큼 회전합니다                                   |
+| 예시                     | transform : rotate (-40deg); 시계반대방향으로 40도 회전      |
+| rotateX(각도)            | 지정한 각도만큼 x축으로 회전합니다.                          |
+| rotateY(각도)            | 지정한 각도만큼 y축으로 회전합니다.                          |
+| rotateZ(각도)            | 지정한 각도만큼 z축으로 회전합니다.                          |
+| perspective(길이)        | 입체적으로 보일 수 있는 기피 값을 지정합니다.                |
+
+2. 변형과 관련된 속성들
+
+- 변형 기준점 설정 : transform-origin
+  - transform-origin : <x축 : left center light 만사용> <y축 : top center bottom만 사용> <z축>
+  - transform-ofigin : right bottom;
+
+- 원근감 표현 : perspective, perspective-origin
+- 속성값은 0이상, 값이 클수록 사용자로부터 멀어짐
+  - perspective : 크기(300px) none, 
+  - perspective-origin : <x축 값> <y축 값>;
+
+- 3D 변형 적용하기 : transform-style : flat(평면효과) preserve-3d(3d효과)
+- 요소의 뒷면 표시하기 : backface-visibility : visible(보기) hidden(숨기기)
+
+3. 트랜지션
+
+- 트랜지션이란? : 스타일 속성이 바뀌는 것을 말합니다
+- 트랜지션을 적용할 속성 지정 : transition-property : all none <속성이름 : width, height;>
+- 트랜지션 진행 시간 지정 : transition-duration : <시간 : 3s>
+- 트랜지션 속도 곡선 지정 : transition-timing-function : linear;(천천히 시작 빨라지다가 마지막에는 천천히) 
+- 지연 시간 설정 : transition-delay : <시간 :  3s>
+- 트랜지션 속성 한꺼번에 표기 
+  - 순서 : transition : <transition-property> <transition-duration> <transition-timing-function> <transition-delay>
+
+4. 애니메이션
+
+- CSS와 애니메이션 : 애니메이션 중간에 스타일이 바뀌는 지점을 키프레임
+
+- 애니메이션 지점 설정 : @keyframes <이름> {<선택자> <스타일>}
+- 애니메이션 이름 지정 : animation-name : <키프레임 이름> none
+- 애니메이션 실행 시간 설정 : animation-duration : <시간 : 3s>
+- 애니메이션 방향 지정 : animation-direction : normal(원래 있던 위치로 돌아감) alternate(왔던 방향으로 되돌아감)
+- 반복 횟수 지정 : animation-iteration-count : <숫자> infinite(무한)
+- 애니메이션 속도 곡선 지정 : animation-timing-function : linear
+- 애니메이션 관련 속성 한번에 표기 
+  - 순서 중요하지 않음
+  - 시간값이 두개라면 첫번쨰는 time, 두번째는 delay
 
 
 
+2021-02-03
 
+[14. 반응형 웹 사이트 만들기]
 
+1. 모바일 기기와 웹 디자인
 
+- 반응형 웹디자인
 
-
-
-
-
-
-
- 
