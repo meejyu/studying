@@ -660,7 +660,98 @@
 
 1. 미디어 쿼리 이해하기
 
-- 미디어 쿼리란? : 
-- 미디어 쿼리 구문
+- 미디어 쿼리란? : 사용자가 사용하는 미디어에 따라서 사이트의 형태가 바뀌도록 CSS를 작성하는 방법
+- 미디어 쿼리 구문 : @media 속성 사용, <style>과 </style> 사이에 사용. and 연산자 사용
+  - @media [only not] 미디어 유형 [and 조건] * [and조건]
+  - 연산자 종류
+    - and : 조건 추가
+    - ,(쉼표) : 도일한 스타일 유형을 사용할 미디어 유형과 조건이 있다면 사용
+    - only : 미디어 쿼리를 지원하는 웹 브라우저에서만
+    - not : 미디어 유형 제외
+  - 미디어 유형의 종류
+    - all : 모든 미디어 유형
+    - print : 인쇄장치
+    - screen : 컴퓨터 스크린
+    - tv
+    - projection : 프로젝터
 - 미디어 쿼리의 조건
+  - 웹문서의 가로 너비와 세로 높이 : width, height
+    - min-width, min-height : 최소  
+    - max-width, max-height : 최대
+  - 단말기 가로 너비와 세로 높이 : device-width
+    - device를 추가 : min-device-height
+  - 화면 회전 : orientation: portrati(세로), orientation: landscape(가로)
+  - 화면 비율 : aspect-ratio(16/(가로)9(세로))
+  - 단말기 비율 : device 추가
+  - 색상당 비트 수 : color, 8가지면 3으로 표현(2의 3제곱)
+  - 미디어 쿼리 중단점 : 서로 다른 CSS를 적용할 화면 크기
+    - 모바일 퍼스트 : 모바일 먼저 고려해 미디어 쿼리 작성
+    - 사용자를 예측하고 일반적으로 사용할만한 기기 파악
 
+2. 미디어 쿼리 적용하기
+
+- 외부 CSS파일 연결하기
+
+  - <link>태그 사용하기 : <head>와 </head> 사이에 삽입
+
+    < link rel="stylesheet" media="미디어 쿼리 조건" href="css파일경로">
+
+    < link rel="stylesheet" media="print and (max-width:786px)" href="css/print.css">
+
+  - @import 구문 사용하기 : @import url(css 파일경로) 미디어 쿼리 조건
+
+    < style>와< /style>사이에 사용
+
+    @import url("css/tablet.css") only screen and (min-width:321px) and (mac-width:786px);
+
+- 웹 문서에서 직접 정의하기
+
+  - style태그 안에서 하나의 조건을 지정 : < style media="미디어 쿼리 조건"> 스타일 규칙들< /style>
+  - style태그 안에 여러 조건에 나열 후 선택적으로 사용 : < style> @media 미디어 쿼리 조건 {스타일 규칙들} < /style>
+
+3. 미디어 쿼리를 사용해 웹 문서 만들기
+
+- 레이아웃 구상하기 
+- 미디어 쿼리 중단점 결정하기
+  - 768px미만 > 모바일 화면
+  - 768px~1719px사이면 > 태블릿 화면
+  - 1720px 이상 > 데스크톱 화면
+- 태그로 구성 : 미디어 쿼리의 영향을 받는 요소를 <div>태그로 묶어 줘야 함
+
+
+
+2021-02-05
+
+[16. 플렉스 박스 레이아웃]
+
+1. 플렉스 박스 레이아웃과 기본 속성들
+
+- 플렉스 박스 레이아웃 : 그리드 레리아웃을 기본으로 해 플렉스 박스를 원하는 위치에 배치
+
+  | 플렉스 박스 레이아웃                     |
+  | ---------------------------------------- |
+  | ![ㅇㅇ](C:\Users\alwn0\Desktop\ㅇㅇ.jpg) |
+
+  - 플렉스 컨테이너 : 웹 요소들을 플렉스하게 사용하려면 플렉스 컨테이너로 묶어 줘야함.
+  - 플렉스 항목 : 1~6번 요소들은 모두 플렉스 항목
+  - 주축 : 항목 배치 방향, 왼쪽에서 오른쪽으로 수평방향 배치, 주축 시작점, 주축 끝점
+  - 교차축 : 위에서 아래로 배치, 교차축 시작점, 교차축 끝점
+
+- 플렉스 컨테이너 지정하기 : display : flex(박스 레벨) inline-flex(인라인)
+
+- display 속성과 브라우저 접두사
+
+  - webkit : iOS 6 이하, 사파리
+  - moz : 파이어폭스
+  - ms : IE 10
+
+- 플렉스 방향 지정 : flex-direction : row row-inverse column column-inverse
+
+  - row(교차축 세로, 주축 시작점에서 끝점) 
+
+  - row-inverse(교차축 세로, 끝점에서 시작점으로) 
+
+  - column(교차축 가로, 시작점에서 끝점으로) 
+  - column-inverse(교차축 가로, 끝점에서 시작점으로) 
+
+- 
