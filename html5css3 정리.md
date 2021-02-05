@@ -728,9 +728,9 @@
 
 - 플렉스 박스 레이아웃 : 그리드 레리아웃을 기본으로 해 플렉스 박스를 원하는 위치에 배치
 
-  | 플렉스 박스 레이아웃                     |
-  | ---------------------------------------- |
-  | ![ㅇㅇ](C:\Users\alwn0\Desktop\ㅇㅇ.jpg) |
+  | 플렉스 박스 레이아웃        |
+  | --------------------------- |
+  | ![ㅇㅇ](C:\meejyu\ㅇㅇ.jpg) |
 
   - 플렉스 컨테이너 : 웹 요소들을 플렉스하게 사용하려면 플렉스 컨테이너로 묶어 줘야함.
   - 플렉스 항목 : 1~6번 요소들은 모두 플렉스 항목
@@ -754,4 +754,37 @@
   - column(교차축 가로, 시작점에서 끝점으로) 
   - column-inverse(교차축 가로, 끝점에서 시작점으로) 
 
-- 
+- 플렉스 항목을 한줄 또는 여러 줄로 배치하기 : flex-wrap : no-wrap wrap wrap-reverse
+
+  no-wrap : 한줄에 표시, 기본값 wrap : 여러줄에 표시 wrap-reverse : 여러줄에 표시&반대반향으로 표시
+
+- 플렉스 방향과 여러 줄의 배치를 한꺼번에 지정 : flex-flow : <플렉스방향> <플렉스 줄 배치>
+
+  flex-flow : column wrap;
+
+- 플렉스 항목의 배치 순서 바꾸기 : order : 0 숫자
+
+- 플렉스 항목 크기 조절 : flex : <flex-grow> <flex-shrink> <flex-basis> auto initial
+
+  flex-grow : 너비를 얼마나 늘일지 숫자로 지정
+
+  flex-shrink : 너비를 얼마나 줄일지 숫자로 지정
+
+  flex-basis : 기본 크기 지정, 0으로 지정
+
+  initial : 공간이 부족할 경우, 최소크기까지 줄임(기본값)
+
+  auto : 플렉스 컨테이너의 공간에 따라 늘이거나 줄임
+
+2. 플렉스 박스 항목 배치를 위한 속성들
+
+- 주축 기준의 배치 방법 지정 : justify-content : flex-start flex-end center space-between space-around
+  - flex-start : 시작점을 기준으로 배치
+  - flex-end : 끝점을 기준으로 배치
+  - center : 중앙을 기준으로 배치
+  - space-between : 시작점과 끝점에 배치후 같은 간격으로 배치
+  - space-around : 모든 플렉스 항목을 같은 간격으로 배치
+- 교차축을 기준의 배치 방법 지정 
+  - align-items : stretch(교차축을 꽉 채움,기본값) flex-start(교차축의 시작점을 기준) flex-end(교차축의 끝점을 기준) center(중앙을 기준으로 배치) 
+  - align-self : auto stretch flex-start flex0end center 
+- 여러 줄일 때의 배치 방법 지정 : align-contnet : flex-start flex-end center space-between space-around
