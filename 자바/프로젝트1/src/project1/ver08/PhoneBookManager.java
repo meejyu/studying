@@ -185,7 +185,6 @@ public class PhoneBookManager {
 		if(isFind == false) {
 			System.out.println("==삭제된 데이터가 없습니다==");
 		}
-		
 	//// end of deleteInfo
 }//// end of FriendInfoHandler
 	
