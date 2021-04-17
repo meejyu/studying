@@ -1,0 +1,33 @@
+/*
+테이블 생성 
+이름, 전화번호, 생년월일을 저장할수 있는 테이블을 생성한다.
+테이블명 : phonebook_tb
+primary key와 같은 제약조건도 걸어준다.
+시퀀스 생성
+시퀀스명 : seq_phonebook
+*/
+
+create table phonebook_tb
+(
+    my_name varchar2(100) primary key,
+    my_number varchar2(100),
+    my_birthday varchar2(100)
+);
+
+drop sequence seq_phonebook;
+
+desc phonebook_tb;
+
+create sequence seq_phonebook
+    increment by 1
+    start with 1
+    minvalue 1
+    nomaxvalue
+    nocycle
+    nocache;
+    
+    insert into phonebook_tb values('김미주', '10393', '498');
+    SELECT my_name, my_number, my_birthday FROM phonebook_tb WHERE my_name like '%미%';
+
+    select * from phonebook_tb;
+    commit;
