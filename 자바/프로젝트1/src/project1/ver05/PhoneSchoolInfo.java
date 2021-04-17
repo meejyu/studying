@@ -11,6 +11,7 @@ public class PhoneSchoolInfo extends PhoneInfo {
 		this.major = major;
 		this.grade = grade;
 	}
+	
 	@Override
 	public void dataAllShow() {
 		super.dataAllShow();

@@ -11,11 +11,11 @@ public class PhoneSchoolInfo extends PhoneInfo {
 		this.major = major;
 		this.grade = grade;
 	}
+	
 	@Override
 	public void dataAllShow() {
 		super.dataAllShow();
 		System.out.println("전공:"+ major);
 		System.out.println("학년:"+ grade);
 	}
-	
 }

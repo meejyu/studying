@@ -8,12 +8,10 @@ public class PhoneCompanyInfo extends PhoneInfo {
 		super(name, phone);
 		this.company = company;
 	}
-
 	
 	@Override
 	public void dataAllShow() {
 		super.dataAllShow();
 		System.out.println("회사:"+ company);
 	}
-	
 }

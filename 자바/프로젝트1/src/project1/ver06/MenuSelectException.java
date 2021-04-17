@@ -2,8 +2,7 @@ package project1.ver06;
 
 public class MenuSelectException extends Exception {
 	public MenuSelectException() {
-		super(" 1~5사이의 정수가 아닙니다.");
+		super("숫자를 정확하게 입력하세요.");
 	}
-	
 }
 

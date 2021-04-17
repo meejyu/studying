@@ -9,7 +9,6 @@ public class PhoneCompanyInfo extends PhoneInfo {
 		this.company = company;
 	}
 
-	
 	@Override
 	public void dataAllShow() {
 		super.dataAllShow();

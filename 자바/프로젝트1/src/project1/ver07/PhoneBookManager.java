@@ -4,74 +4,88 @@ import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import project1.ver06.MenuSelectException;
 import project1.ver07.*;
 
 
 public class PhoneBookManager {
 	
 	HashSet<PhoneInfo> set = new HashSet<PhoneInfo>();
-	
+
 	public void dataInput() {
 		Scanner scan = new Scanner(System.in);
-		String iName, iPhone, iMajor, IGrade, Icompany;
-		System.out.println("데이터 입력을 시작합니다.");
-		System.out.println("1.일반, 2.동창, 3.회사");
-		int num1 = scan.nextInt();
-		String a = scan.nextLine();
-		if (num1 == SubMenuItem.ONE) {
-			System.out.println("이름:");
-			iName = scan.nextLine();
-			System.out.println("전화번호:");
-			iPhone = scan.nextLine();
-			PhoneInfo pi = new PhoneInfo(iName, iPhone);
-			if (!set.add(new PhoneInfo(iName, iPhone))) {
-				System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
-				String xy = scan.nextLine();
-				if ("Y".equals(xy.toUpperCase())) {
-					set.remove(pi);
-					set.add(pi);
+		String iName, iPhone, iMajor, IGrade, ICompany;
+
+		while (true) {
+
+			try {
+				System.out.println("데이터 입력을 시작합니다.");
+				System.out.println("1.일반, 2.동창, 3.회사");
+
+				int num1 = readChoice();
+
+				if (num1 == SubMenuItem.ONE) {
+					System.out.println("이름:");
+					iName = scan.nextLine();
+					System.out.println("전화번호:");
+					iPhone = scan.nextLine();
+					PhoneInfo pi = new PhoneInfo(iName, iPhone);
+					if (!set.add(new PhoneInfo(iName, iPhone))) {
+						System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
+						String xy = scan.nextLine();
+						if ("Y".equals(xy.toUpperCase())) {
+							set.remove(pi);
+							set.add(pi);
+						}
+					}
+					System.out.println("데이터 입력이 완료되었습니다.");
+					break;
+				} else if (num1 == SubMenuItem.TWO) {
+					System.out.println("이름:");
+					iName = scan.nextLine();
+					System.out.println("전화번호:");
+					iPhone = scan.nextLine();
+					System.out.println("전공:");
+					iMajor = scan.nextLine();
+					System.out.println("학년:");
+					IGrade = scan.nextLine();
+
+					PhoneSchoolInfo pi = new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade);
+					if (!set.add(new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade))) {
+						System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
+						String xy = scan.nextLine();
+						if ("Y".equals(xy.toUpperCase())) {
+							set.remove(pi);
+							set.add(pi);
+						}
+					}
+					System.out.println("데이터 입력이 완료되었습니다.");
+					break;
+				} else if (num1 == SubMenuItem.THR) {
+					System.out.println("이름:");
+					iName = scan.nextLine();
+					System.out.println("전화번호:");
+					iPhone = scan.nextLine();
+					System.out.println("회사:");
+					ICompany = scan.nextLine();
+					PhoneCompanyInfo pi = new PhoneCompanyInfo(iName, iPhone, ICompany);
+					if (!set.add(new PhoneCompanyInfo(iName, iPhone, ICompany))) {
+						System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
+						String xy = scan.nextLine();
+						if ("Y".equals(xy.toUpperCase())) {
+							set.remove(pi);
+							set.add(pi);
+						}
+					}
+					System.out.println("데이터 입력이 완료되었습니다.");
+					break;
+				} else if (num1 == 99) {
+					continue;
 				}
+			} 
+			catch (MenuSelectException e) {
+				System.out.println("[예외발생]" + e.getMessage());
 			}
-			System.out.println("데이터 입력이 완료되었습니다.");
-		}
-		else if(num1==SubMenuItem.TWO) {
-			System.out.println("이름:");
-			iName = scan.nextLine();
-			System.out.println("전화번호:");
-			iPhone = scan.nextLine();
-			System.out.println("전공:");
-			iMajor = scan.nextLine();
-			System.out.println("학년:");
-			IGrade = scan.nextLine();
-			
-			PhoneSchoolInfo pi = new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade);
-			if (!set.add(new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade))) {
-				System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
-				String xy = scan.nextLine();
-				if ("Y".equals(xy.toUpperCase())) {
-					set.remove(pi);
-					set.add(pi);
-				}
-			}
-			System.out.println("데이터 입력이 완료되었습니다.");	
-		}
-		else if(num1==SubMenuItem.THR) {
-			System.out.println("이름:");
-			iName = scan.nextLine();
-			System.out.println("전화번호:");
-			iPhone = scan.nextLine();
-			System.out.println("회사:");
-			Icompany = scan.nextLine();
-			PhoneCompanyInfo pi = new PhoneCompanyInfo(iName, iPhone, Icompany);
-			if (!set.add(new PhoneCompanyInfo(iName, iPhone, Icompany))) {
-				System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
-				String xy = scan.nextLine();
-				if ("Y".equals(xy.toUpperCase())) {
-					set.remove(pi);
-					set.add(pi);
-				}
-			}
-				System.out.println("데이터 입력이 완료되었습니다.");	
 		}
 	}
 
@@ -89,10 +103,9 @@ public class PhoneBookManager {
 		}
 	}
 	
-	// 주소록 검색
 	public void dataSearch() {
 		Scanner scan = new Scanner(System.in);
-		boolean isFind = false;// 검색한 정보가 있는지 확인을 위한 변수
+		boolean isFind = false;
 		System.out.println("데이터 검색을 시작합니다:");
 		System.out.println("이름");
 		String searchName = scan.next();
@@ -113,15 +126,8 @@ public class PhoneBookManager {
 		catch (NullPointerException e) {
 			System.out.println("***찾는 정보가 없습니다.***");
 		}
-	}//// end of searchInfo
+	}
 
-//	public String readName() throws NullPointerException {
-
-//		Scanner scan = new Scanner(System.in);
-//		boolean isFind = false;// 검색한 정보가 있는지 확인을 위한 변수
-//		String inputName;
-
-//주소록 항목 삭제 
 	public void dataDelete() {
 		boolean isFind = false;
 		Scanner scan = new Scanner(System.in);
@@ -130,7 +136,7 @@ public class PhoneBookManager {
 		String deleteName = scan.nextLine();
 
 		for(PhoneInfo pio : set) {
-			if(deleteName.contains(pio.getName())) {
+			if(pio.getName().contains(deleteName)) {
 				set.remove(pio);
 				System.out.println("==데이터삭제가 완료되었습니다==");
 				isFind = true;
@@ -139,7 +145,26 @@ public class PhoneBookManager {
 		if(isFind == false) {
 			System.out.println("==삭제된 데이터가 없습니다==");
 		}
-	}//// end of deleteInfo
-}//// end of FriendInfoHandler
+	}
+	
+	public static int readChoice() throws MenuSelectException {
+		
+		Scanner scan = new Scanner(System.in);
+		int inputchoice = 0;
+		
+		try {
+			inputchoice = scan.nextInt();
+		}
+		catch(InputMismatchException e) {
+			System.out.println("문자열을 입력하셨습니다.");
+			return 99;
+		}
+		if(inputchoice<1 || inputchoice>3) {
+			MenuSelectException ex = new MenuSelectException();
+			throw ex;
+		}
+		return inputchoice;
+	}
+}
 
 
