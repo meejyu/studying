@@ -49,12 +49,10 @@ public class PhoneInfo implements Serializable{
 
 	@Override
 	public int hashCode() {
-		//디버깅용
 		return name.hashCode();
 	}	
 	@Override
 	public boolean equals(Object obj) {
-		//디버깅용
 		PhoneInfo pi = (PhoneInfo)obj;
 		if(this.name.equals(pi.name)) {
 			return true;

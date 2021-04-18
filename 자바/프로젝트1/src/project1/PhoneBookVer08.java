@@ -28,37 +28,28 @@ public class PhoneBookVer08 {
 
 	public static void main(String[] args) {
 
-		PhoneBookManager handler = new PhoneBookManager();/*
-																 * 연락처 정보를 저장할 객체배열의 크기를 100으로 초기화한다.
-																 */
-		// 무한루프로 구성하여 사용자가 원하는 시점에 프로그램을 종료시킨다.
+		PhoneBookManager handler = new PhoneBookManager();
+		handler.loaddata();
+		
 		while (true) {
-			// 메뉴출력
-
 			printMenu();
-			handler.loaddata();
 
 			try {
 				int choice = readChoice();
 
 				switch (choice) {
-				// 친구 정보 추가
 				case MenuItem.ONE:
 					handler.dataInput();
 					break;
-				// 전체 정보보기
 				case MenuItem.TWO:
 					handler.dataSearch();
 					break;
-				// 간략 정보보기
 				case MenuItem.THR:
 					handler.dataDelete();
 					break;
-				// 검색
 				case MenuItem.FOR:
 					handler.dataAllShow();
 					break;
-				// 삭제
 				case MenuItem.FIV:
 					handler.saveOption();
 					break;

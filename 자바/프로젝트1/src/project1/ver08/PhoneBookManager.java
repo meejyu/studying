@@ -18,84 +18,95 @@ import java.util.Scanner;
 import project1.ver08.SubMenuItem;
 import project1.ver08.PhoneCompanyInfo;
 import project1.ver08.PhoneSchoolInfo;
+import project1.ver06.MenuSelectException;
 import project1.ver08.AutoSaverT;
 import project1.ver08.PhoneInfo;
 
 public class PhoneBookManager {
-//배열
 	
 	HashSet<PhoneInfo> set = new HashSet<PhoneInfo>();
 	AutoSaverT auto = new AutoSaverT(set);
+	
 	public void dataInput() {
-		
+
 		Scanner scan = new Scanner(System.in);
 		String iName, iPhone, iMajor, IGrade, ICompany;
-		
-		System.out.println("데이터 입력을 시작합니다.");
-		System.out.println("1.일반, 2.동창, 3.회사");
-		int num1 = scan.nextInt();
-		String a = scan.nextLine();
-		if (num1 == SubMenuItem.ONE) {
-			System.out.println("이름:");
-			iName = scan.nextLine();
-			System.out.println("전화번호:");
-			iPhone = scan.nextLine();
-			PhoneInfo pi = new PhoneInfo(iName, iPhone);
-			if (!set.add(new PhoneInfo(iName, iPhone))) {
-				System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
-				String xy = scan.nextLine();
-				if ("Y".equals(xy.toUpperCase())) {
-					set.remove(pi);
-					set.add(pi);
+
+		while (true) {
+
+			try {
+
+				System.out.println("데이터 입력을 시작합니다.");
+				System.out.println("1.일반, 2.동창, 3.회사");
+
+				int num1 = readChoice();
+
+				if (num1 == SubMenuItem.ONE) {
+					System.out.println("이름:");
+					iName = scan.nextLine();
+					System.out.println("전화번호:");
+					iPhone = scan.nextLine();
+					PhoneInfo pi = new PhoneInfo(iName, iPhone);
+					if (!set.add(new PhoneInfo(iName, iPhone))) {
+						System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
+						String xy = scan.nextLine();
+						if ("Y".equals(xy.toUpperCase())) {
+							set.remove(pi);
+							set.add(pi);
+						}
+					}
+					System.out.println("데이터 입력이 완료되었습니다.");
+					break;
+				} else if (num1 == SubMenuItem.TWO) {
+					System.out.println("이름:");
+					iName = scan.nextLine();
+					System.out.println("전화번호:");
+					iPhone = scan.nextLine();
+					System.out.println("전공:");
+					iMajor = scan.nextLine();
+					System.out.println("학년:");
+					IGrade = scan.nextLine();
+
+					PhoneSchoolInfo pi = new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade);
+					if (!set.add(new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade))) {
+						System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
+						String xy = scan.nextLine();
+						if ("Y".equals(xy.toUpperCase())) {
+							set.remove(pi);
+							set.add(pi);
+						}
+					}
+					System.out.println("데이터 입력이 완료되었습니다.");
+					break;
+				} else if (num1 == SubMenuItem.THR) {
+					System.out.println("이름:");
+					iName = scan.nextLine();
+					System.out.println("전화번호:");
+					iPhone = scan.nextLine();
+					System.out.println("회사:");
+					ICompany = scan.nextLine();
+					PhoneCompanyInfo pi = new PhoneCompanyInfo(iName, iPhone, ICompany);
+					if (!set.add(new PhoneCompanyInfo(iName, iPhone, ICompany))) {
+						System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
+						String xy = scan.nextLine();
+						if ("Y".equals(xy.toUpperCase())) {
+							set.remove(pi);
+							set.add(pi);
+						}
+					}
+					System.out.println("데이터 입력이 완료되었습니다.");
+					break;
+				} else if (num1 == 99) {
+					continue;
 				}
+			} catch (MenuSelectException e) {
+				System.out.println("[예외발생]" + e.getMessage());
 			}
-			System.out.println("데이터 입력이 완료되었습니다.");
-		}
-		else if(num1==SubMenuItem.TWO) {
-			System.out.println("이름:");
-			iName = scan.nextLine();
-			System.out.println("전화번호:");
-			iPhone = scan.nextLine();
-			System.out.println("전공:");
-			iMajor = scan.nextLine();
-			System.out.println("학년:");
-			IGrade = scan.nextLine();
-			
-			PhoneSchoolInfo pi = new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade);
-			if (!set.add(new PhoneSchoolInfo(iName, iPhone, iMajor, IGrade))) {
-				System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
-				String xy = scan.nextLine();
-				if ("Y".equals(xy.toUpperCase())) {
-					set.remove(pi);
-					set.add(pi);
-				}
-			}
-			System.out.println("데이터 입력이 완료되었습니다.");	
-			
-		}
-		else if(num1==SubMenuItem.THR) {
-			System.out.println("이름:");
-			iName = scan.nextLine();
-			System.out.println("전화번호:");
-			iPhone = scan.nextLine();
-			System.out.println("회사:");
-			ICompany = scan.nextLine();
-			PhoneCompanyInfo pi = new PhoneCompanyInfo(iName, iPhone, ICompany);
-			if (!set.add(new PhoneCompanyInfo(iName, iPhone, ICompany))) {
-				System.out.println("이미 저장된 데이터입니다. 덮어쓸까요? Y(y) / N(n)");
-				String xy = scan.nextLine();
-				if ("Y".equals(xy.toUpperCase())) {
-					set.remove(pi);
-					set.add(pi);
-				}
-			}
-				System.out.println("데이터 입력이 완료되었습니다.");	
 		}
 	}
-
+	
 	public void loaddata() {
 		try {
-			//저장된 파일을 역직렬화(복원)하기 위한 입력스트림 생성
 			ObjectInputStream in = 
 				new ObjectInputStream(
 					new FileInputStream("src/project1/ver08/PhoneBook.obj")
@@ -110,7 +121,6 @@ public class PhoneBookManager {
 			}
 		}
 		catch (Exception e) {
-			//e.printStackTrace();
 		}
 	}
 		public void dataAllShow() {
@@ -126,24 +136,9 @@ public class PhoneBookManager {
 			}
 		}
 		
-//		} 
-//		catch (ClassNotFoundException e) {
-//			System.err.println("클래스없음");
-//		}
-//		catch (FileNotFoundException e) {
-//			System.err.println("입력된 정보없음");
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//			System.err.println("뭔가없음");
-//		}
-	
-	
-	
-	// 주소록 검색
 	public void dataSearch() {
 		Scanner scan = new Scanner(System.in);
-		boolean isFind = false;// 검색한 정보가 있는지 확인을 위한 변수
+		boolean isFind = false;
 		System.out.println("데이터 검색을 시작합니다:");
 		System.out.println("이름");
 		String searchName = scan.next();
@@ -166,7 +161,6 @@ public class PhoneBookManager {
 		}
 	}
 
-//주소록 항목 삭제 
 	public void dataDelete() {
 		boolean isFind = false;
 		Scanner scan = new Scanner(System.in);
@@ -185,23 +179,19 @@ public class PhoneBookManager {
 		if(isFind == false) {
 			System.out.println("==삭제된 데이터가 없습니다==");
 		}
-	//// end of deleteInfo
-}//// end of FriendInfoHandler
+	}
 	
 	public void save() {
-		//11번파일 참고
 		try {
 			ObjectOutputStream out =
 					new ObjectOutputStream(
 						new FileOutputStream("src/project1/ver08/PhoneBook.obj")
 					);
-
 			for(PhoneInfo pio : set) {
 				out.writeObject(pio);
 			}
-			
+			System.out.println("저장");
 			out.close();
-			
 		} 
 		catch (FileNotFoundException e) {
 			System.err.println("파일없음");
@@ -224,8 +214,10 @@ public class PhoneBookManager {
 		if(num==1) {
 			if(auto.isAlive()) {
 				System.out.println("이미 자동저장이 실행중입니다.");
-			}else {
+			}
+			else {
 				System.out.println("자동저장을 시작합니다.");
+				auto.setDaemon(true);
 				auto.start();
 			}
 		}
@@ -234,8 +226,26 @@ public class PhoneBookManager {
 			auto.interrupt();
 		}
 	}
-
-}//// end of FriendInfoHandler
+	
+	public static int readChoice() throws MenuSelectException {
+		
+		Scanner scan = new Scanner(System.in);
+		int inputchoice = 0;
+		
+		try {
+			inputchoice = scan.nextInt();
+		}
+		catch(InputMismatchException e) {
+			System.out.println("문자열을 입력하셨습니다.");
+			return 99;
+		}
+		if(inputchoice<1 || inputchoice>3) {
+			MenuSelectException ex = new MenuSelectException();
+			throw ex;
+		}
+		return inputchoice;
+	}
+}
 
 
 
