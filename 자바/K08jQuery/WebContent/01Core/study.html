@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="../common/jquery/jquery-3.6.0.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#naver').click(function(){
+				alert($('#naver').get(0).href);
+			});
+		});
+		
+		function daumClick() {
+			var daum = document.getElementById("daum");
+			alert(daum.href);
+		}
+	</script>    
+	<script>
+		$(function(){
+			$('#btn1').click(function(){
+				var tx = $(".kosmo").get(0);
+				console.log(tx.innerText);
+			});
+			$('#btn2').click(function(){
+				var tx = $(".kosmo").get(2)
+				console.log(tx.innerText);
+			});
+			$('#btn3').click(function(){
+				tx = $(".kosmo").get(3);
+				console.log(tx.innerText);
+			});
+		});
+	</script>
+
+	<script>
+		$(function(){
+			$('#button1').click(function(){
+				var tx = $(".gasan").get();
+				for(var i =1; i<tx.length; i++) {
+					console.log(tx[i].innerHTML);
+				}
+			})
+		})
+	</script>
+	
+</head>
+<body>
+	<h2>get()메소드</h2>
+	<ul>
+		<li>
+			<a href="#http://www.naver.com" id="naver">
+				네이버
+			</a>
+		</li>
+		<li>
+			<a href="#Daum" alt="Daum입니다." id="daum"	
+				onclick="daumClick();">
+				다음
+			</a>
+		</li>
+	</ul>
+</body>
+</html>

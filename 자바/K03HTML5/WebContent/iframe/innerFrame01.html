@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerFrame01.html</title>
+</head>
+<body>
+    <h2>innerFrame01 페이지</h2>
+
+    <h4>창의 이름 : innerWin01</h4>
+    <iframe src="innerFrame02.html" name="innerWin01" 
+        frameborder="1" scrolling="auto" width="300"
+            height="200"></iframe>
+    
+    <p>
+        <a href="https://www.naver.com/" target="_self">
+            _self에서 이동함
+        </a>
+        <br/>
+        <a href="https://www.daum.net/" target="_parent">
+            _parent에서 이동함
+        </a>
+        <br/>
+        <a href="https://www.daum.net/" target="_top">
+            _top에서 이동함
+        </a>
+    </p>
+</body>
+</html>
