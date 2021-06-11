@@ -67,15 +67,6 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>memberList</servlet-name>
-    <servlet-class>plants.ListController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>memberList</servlet-name>
-    <url-pattern>/admin/memberList.do</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
     <servlet-name>boardList</servlet-name>
     <servlet-class>plants.ListController</servlet-class>
   </servlet>

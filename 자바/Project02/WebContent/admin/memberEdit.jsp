@@ -1,12 +1,33 @@
+<%@page import="plants.MembershipDTO"%>
+<%@page import="plants.MembershipDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String user_id = request.getParameter("user_id");
+MembershipDAO dao = new MembershipDAO();
+MembershipDTO dto = dao.memberView(user_id);
+dao.close();
+System.out.println(dto.getMobile());
+System.out.println(dto.getEmail());
+// String[] mobileArr = dto.getMobile().split("-");
+// String mobile01=mobileArr[0];
+// String mobile02=mobileArr[1];
+// String mobile03=mobileArr[2];
+// String[] emailArr = dto.getEmail().split("@");
+// String email01=emailArr[0];
+// String email02=emailArr[1];
+%>       
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-   <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 수정</title>
+    <!-- 
+        웹폰트 : https://fonts.google.com/
+        jQuery UI : 
+     -->   
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
         *{margin:0px auto; font-family: 'Noto Sans KR', sans-serif;}
         .AllWrap{padding:50px;}
@@ -32,9 +53,6 @@
         .s01{width:140px;}
         .s02{width:70px;}
     </style>
-
-   
-    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -71,7 +89,7 @@
         }	
         else{
             fn.user_id.readOnly = true;
-            window.open("../pages/id_overapping.jsp?id="+fn.user_id.value,
+            window.open("./pages/id_overapping.jsp?id="+fn.user_id.value,
                     "idover", "width=300,height=200");
         }
     }
@@ -104,7 +122,7 @@
         if(fn.name.value==""){
             alert("이름을 입력해주세요");fn.name.focus();return false;
         } 
-        return true;
+        //return false;
     }
     function isPassword(param){
         //숫자나 특수기호가 확인되면 true로 변경한다.
@@ -228,11 +246,10 @@
         }).open();
     }
     </script>
-
-
 </head>
+
 <body>
-	<form action="../admin/02registProcess.jsp" method="post" name="loginFrm" onsubmit="return loginValdidate(this)">
+<form action="editProcess.jsp" method="post" name="loginFrm" onsubmit="return loginValdidate(this)">
 <div class="AllWrap">
     <div class="wrap_regiform">
         <p>*필수입력사항</p>
@@ -244,7 +261,7 @@
             <tr>
                 <td><span class="red">*</span> 아이디</td>
                 <td>
-                    <input type="text" class="w01" name="user_id" value="dfnlsk8779" />       
+                    <input type="text" class="w01" name="user_id" value="<%=dto.getUser_id() %>" readonly />       
                     <button type="button" onclick="idCheck(this.form);">중복확인</button>             
                 </td>
             </tr>
@@ -257,7 +274,7 @@
             <tr>
                 <td><span class="red">*</span> 비밀번호</td>
                 <td>
-                    <input type="text" class="w01" name="pass1" value="sdfsd784@" />                   
+                    <input type="text" class="w01" name="pass1" value="<%=dto.getPass() %>" />                   
                 </td>
             </tr>
             <tr>
@@ -272,13 +289,13 @@
             <tr>
                 <td><span class="red">*</span> 비밀번호확인</td>
                 <td>
-                    <input type="text" class="w01" name="pass2" value="sdfsd784@" />
+                    <input type="text" class="w01" name="pass2" value="<%=dto.getPass() %>" />
                 </td>
             </tr>
             <tr>
                 <td><span class="red">*</span> 이름</td>
                 <td>
-                    <input type="text" class="w01" name="name" value="주르르" />
+                    <input type="text" class="w01" name="name" value="<%=dto.getName() %>" />
                     
                     <label for="radio-1">남</label>
                     <input type="radio" name="gender" id="radio-1" value="남" checked>
@@ -290,30 +307,29 @@
             <tr>
                 <td><span class="red">*</span> 생년월일</td>
                 <td style="padding: 0px 0 5px 5px;">
-                    <input type="text" class="w02" name="birthday" id="birthday" value="2020-05-05" />
+                    <input type="text" class="w02" name="birthday" id="birthday" value="<%=dto.getBirthday() %>" />
                     <img src="./images/pick.jpg" alt="" class="pick" />
                 </td>
             </tr>
             <tr>
                 <td><span class="red">*</span> 주소</td>
                 <td>
-                    <input type="text" class="w03" name="zipcode" value="453442" />
+                    <input type="text" class="w03" name="zipcode" value="<%=dto.getZipcode() %>" />
                     <button type="button" onclick="zipcodeFind();">우편번호찾기</button> 
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input type="text" class="w04" name="address1" value="ㅇㄴㄹㄴㅇㅎㅎㄹㄴㄴㅇㄹ" />                
-                    <input type="text" class="w04" name="address2" value="ㄴㅇㄹㄴㄹㄴㅇㄹㄴ" />
+                    <input type="text" class="w04" name="address1" value="<%=dto.getAddress() %>" />                
                 </td>
             </tr>
             <tr>
                 <td><span class="red">*</span> 이메일</td>
                 <td>
-                    <input type="text" class="w05" name="email1" value="sdfsd" />
+                    <input type="text" class="w05" name="email1" value="<%--email01 --%>" />
                     @
-                    <input type="text" class="w05" name="email2" value="dfdsfsdf" />
+                    <input type="text" class="w05" name="email2" value="<%--email02 --%>" />
                     <select name="email_domain" class="s01" onchange="inputEmail(this.form);">
                         <option value="1">직접입력</option>
                         <option value="naver.com">naver.com</option>
@@ -327,7 +343,7 @@
                 <td>
                     <select name="mobile1" class="s02" onchange="commonFocusMove(this, 3, 'mobile2');">
                         <option value=""></option>
-						<option value="010">010</option>
+						<option value="010" selected>010</option>
                         <option value="011">011</option>
                         <option value="016">016</option>
                         <option value="017">017</option>
@@ -336,15 +352,15 @@
                     </select>
                     -
                     <input type="text" class="w06" name="mobile2" maxlength="4" 
-                        value="3242" onkeyup="commonFocusMove(this, 4, 'mobile3');" />
+                        value="<%--=mobile02 --%>" onkeyup="commonFocusMove(this, 4, 'mobile3');" />
                     -
                     <input type="text" class="w06" name="mobile3" maxlength="4" 
-                        value="4565" onkeyup="commonFocusMove(this, 4, 'tel1');" />
+                        value="<%--=mobile03 --%>" onkeyup="commonFocusMove(this, 4, 'tel1');" />
                 </td>
             </tr>
         </table>
         <div style="text-align: center; margin-top:10px;">
-            <input type="submit" value="회원가입하기">
+            <input type="submit" value="회원정보수정">
             <input type="reset" value="작성내용리셋">
         </div>
     </div>

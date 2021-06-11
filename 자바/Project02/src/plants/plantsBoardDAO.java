@@ -124,6 +124,47 @@ public class plantsBoardDAO extends ConnectionPool {
 		}
 		return bbs;
 	}
+	
+	//목록 보기
+		public List<MembershipDTO> MselectListPage(Map<String,Object> map){
+			List<MembershipDTO> bbs = new Vector<MembershipDTO>();
+			String query = "SELECT * FROM membership ";
+			if(map.get("searchWord")!=null)
+			{
+				query +=" WHERE "+ map.get("searchField") +" "
+						+" LIKE '%"+ map.get("searchWord") +"%' "; 
+			}
+			query += " ORDER BY num DESC LIMIT ?,?";
+				
+			try {
+				psmt = con.prepareStatement(query);
+				psmt.setInt(1, Integer.parseInt(map.get("start").toString())-1);
+				psmt.setInt(2, Integer.parseInt(map.get("end").toString())-1);
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					System.out.println("게시물조회중");
+					MembershipDTO dto = new MembershipDTO();
+					
+					dto.setUser_id(rs.getString("id"));
+					dto.setPass(rs.getString("pass"));
+					dto.setName(rs.getString("name"));  
+					dto.setGender(rs.getString("gender"));   
+					dto.setBirthday(rs.getString("birthday")); 
+					dto.setZipcode(rs.getString("zipcode"));  
+					dto.setAddress(rs.getString("address")); 
+					dto.setEmail(rs.getString("email"));  
+					dto.setMobile(rs.getString("selpphone"));  
+					dto.setRegidate(rs.getString("joindate"));
+					
+					bbs.add(dto);
+				}
+			}
+			catch(Exception e) {
+				System.out.println("게시물 조회중 예외발생");
+				e.printStackTrace();
+			}
+			return bbs;
+		}
 
 	public void close() {
 		try {
@@ -132,7 +173,7 @@ public class plantsBoardDAO extends ConnectionPool {
 			if(con!=null) con.close();
 		}
 		catch(Exception e) {
-			System.out.println("Oracle 자원반납시 예외발생");
+			System.out.println("마리아 자원반납시 예외발생");
 		}
 	}
 }
